@@ -4,11 +4,13 @@ const db = require("./db");
 const cookieParser = require("cookie-parser");
 const userAuth = require("./routes/auth");
 const session = require("express-session");
+const cors = require("cors");
 require("dotenv").config();
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 app.use(
   session({
     secret: process.env.SECRET,
