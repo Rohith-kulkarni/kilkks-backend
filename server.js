@@ -4,13 +4,14 @@ const db = require("./db");
 const cookieParser = require("cookie-parser");
 const userAuth = require("./routes/auth");
 const session = require("express-session");
+require("dotenv").config();
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   session({
-    secret: "my_secret_key",
+    secret: process.env.secret,
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 3600000 },
