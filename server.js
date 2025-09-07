@@ -33,7 +33,7 @@ app.post("/login", async (req, res) => {
       } else {
         const isPasswordMatched = await bcrypt.compare(password, user.password);
         if (!isPasswordMatched) {
-          res.status(401).send("Invalid Password");
+          res.status(401).send(err);
         } else {
           req.session.userId = user.id;
           res.status(200).send(user);
@@ -54,7 +54,6 @@ app.post("/register", async (req, res) => {
     res.status(200);
     res.send("User successfully registered");
   } catch (e) {
-    console.log("Failed to register user : ", e.message, e.status);
     res.status(500);
     res.send(`Registration error:`, e.message);
   }

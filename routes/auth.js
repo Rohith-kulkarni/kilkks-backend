@@ -1,5 +1,6 @@
 const userAuth = async (req, res, next) => {
-  const user = req.session.userId;
+  const user = req.cookies.username;
+  console.log(user);
   if (user === undefined) {
     res.status(401);
     res.send("User must login first");
